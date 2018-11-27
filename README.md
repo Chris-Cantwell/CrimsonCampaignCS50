@@ -8,11 +8,12 @@ Chris Cantwell's final project for CS50, November 2018.
 * Download Git
 * Install Python and Python3
 * Use pip to install virtualenv, flask
+* Able to run python code *have to launch Atom from cmd*
 
 ## In Progress:
 
 ### Desktop Environment:
-* Get Used To Atom
+* Get Used To Atom and Atom/Git Integration
 
 ## TODO:
 * *Current Plan: Server: Heroku, Database: Heroku/SQL, Controller: Python, Frontend: React/JS*
