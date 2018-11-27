@@ -15,6 +15,7 @@ Chris Cantwell's final project for CS50, November 2018.
 * Get Used To Atom
 
 ## TODO:
+* *Current Plan: Server: Heroku, Database: Heroku/SQL, Controller: Python, Frontend: React/JS*
 * Set Up Web Server
 * Get Bare Bones Working Based on C$50 Finance
 * Get Database Working
