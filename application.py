@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect
 import os
-from cs50 import SQL, adminer50
+from cs50 import SQL
 
 # Configure application
 app = Flask(__name__)
@@ -13,4 +13,20 @@ def index():
 
 @app.route("/error", methods=["GET"])
 def error():
+    return render_template("error.html")
+
+@app.route("/input", methods=["POST", "GET"])
+def input():
+    return render_template("error.html")
+
+@app.route("/search", methods=["POST", "GET"])
+def search():
+    return render_template("error.html")
+
+@app.route("/login", methods=["POST", "GET"])
+def login():
+    return render_template("error.html")
+
+@app.route("/logout", methods=["POST", "GET"])
+def logout():
     return render_template("error.html")
