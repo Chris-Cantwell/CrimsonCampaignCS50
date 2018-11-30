@@ -15,5 +15,17 @@
   <title>Crimson Campaigns: {% block title %}{% endblock %}</title>
 </head>
 <body>
+  <!-- Navigation Bar -->
+  <ul class="navbar-nav mr-auto mt-2">
+    <li class="nav-item"><a class="nav-link" href="/index">Home</a></li>
+    <li class="nav-item"><a class="nav-link" href="/input">Data Input</a></li>
+    <li class="nav-item"><a class="nav-link" href="/search">Data Search</a></li>
+  </ul>
+    <ul class="navbar-nav ml-auto mt-2">
+    <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+  </ul>
+
+
+  <!-- Jinja input for body tags of other pages -->
   {% block main %}{% endblock %}
 </body>
