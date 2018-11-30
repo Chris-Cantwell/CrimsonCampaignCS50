@@ -1,8 +1,13 @@
 Click==7.0
+cs50==2.4.4
 Flask==1.0.2
 itsdangerous==1.1.0
 Jinja2==2.10
 MarkupSafe==1.1.0
+psycopg2-binary==2.7.6.1
+SQLAlchemy==1.2.14
+sqlparse==0.2.4
+termcolor==1.1.0
 virtualenv==16.1.0
 virtualenvwrapper-win==1.2.5
 waitress==1.1.0
