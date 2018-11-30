@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect
 import os
-from cs50 import SQL
+from cs50 import SQL, adminer50
 
 # Configure application
 app = Flask(__name__)
