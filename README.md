@@ -10,6 +10,7 @@ Chris Cantwell's final project for CS50, November 2018.
 * Use pip to install virtualenv, flask
 * Able to run python code *have to launch Atom from cmd*
 * Register for a Heroku account
+* Gave up on figuring out how to integrate react
 
 ## In Progress:
 
@@ -18,7 +19,7 @@ Chris Cantwell's final project for CS50, November 2018.
 * Figure out which framework I want to commit to and how to integrate all components
 
 ## TODO:
-* *Current Plan: Server: Heroku, Database: PostgressSQL, Controller: Python, Frontend: React/JS*
+* *Current Plan: Server: Heroku, Database: PostgressSQL, Controller: Python, Frontend: Flask/Jinja*
 * **Set Up Heroku Web Server**
 * Get Bare Bones Working Based on C$50 Finance
 * Get Database Working
