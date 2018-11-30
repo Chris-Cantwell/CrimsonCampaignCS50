@@ -6,4 +6,4 @@ from cs50 import SQL
 app = Flask(__name__)
 
 @app.route("/", methods=["POST", "GET"])
-    return render_template("index.html")
+return render_template("index.html")
