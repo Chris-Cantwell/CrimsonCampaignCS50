@@ -5,6 +5,8 @@ from cs50 import SQL
 # Configure application
 app = Flask(__name__)
 
+db = SQL("postgres://bcbfedessydwun:dbdc8f53173f93f71ff4b7c1ea51fefee2e4dac7d785d312c4f426eae16ce8ab@ec2-54-163-230-178.compute-1.amazonaws.com:5432/dat9s8lnbu4obk")
+
 @app.route("/", methods=["POST", "GET"])
 def index():
     return render_template("index.html")
