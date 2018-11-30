@@ -10,3 +10,7 @@ db = SQL("postgres://bcbfedessydwun:dbdc8f53173f93f71ff4b7c1ea51fefee2e4dac7d785
 @app.route("/", methods=["POST", "GET"])
 def index():
     return render_template("index.html")
+
+@app.route("/error", methods=["GET"])
+def error():
+    return render_template("error.html")
