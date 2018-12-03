@@ -15,7 +15,7 @@ def index():
 
 @app.route("/error", methods=["GET"])
 def error():
-    with open('templates/static/Partial-Credit.jpg', 'r') as img:
+    with open('templates/static/Partial-Credit.png', 'r') as img:
         return render_template("error.html", img=img, icon=icon)
 
 @app.route("/input", methods=["POST", "GET"])
