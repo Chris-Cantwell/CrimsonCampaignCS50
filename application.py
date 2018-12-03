@@ -9,25 +9,25 @@ db = SQL("postgres://bcbfedessydwun:dbdc8f53173f93f71ff4b7c1ea51fefee2e4dac7d785
 
 @app.route("/", methods=["POST", "GET"])
 def index():
-    return render_template("index.html", icon=icon)
+    return render_template("index.html")
 
 @app.route("/error", methods=["GET"])
 def error():
     with open('static/Partial-Credit.png', 'r') as img:
-        return render_template("error.html", img=img, icon=icon)
+        return render_template("error.html", img=img)
 
 @app.route("/input", methods=["POST", "GET"])
 def input():
-    return render_template("dataInput.html", icon=icon)
+    return render_template("dataInput.html")
 
 @app.route("/search", methods=["POST", "GET"])
 def search():
-    return render_template("search.html", icon=icon)
+    return render_template("search.html")
 
 @app.route("/login", methods=["POST", "GET"])
 def login():
-    return render_template("login.html", icon=icon)
+    return render_template("login.html")
 
 @app.route("/logout", methods=["POST", "GET"])
 def logout():
-    return render_template("error.html", img=img, icon=icon)
+    return render_template("error.html", img=img)
