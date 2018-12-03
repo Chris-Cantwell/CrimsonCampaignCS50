@@ -11,6 +11,12 @@ nav .navbar-brand
     color: #FFFFFF;
 }
 
+.error-image
+{
+  align-content: center;
+  
+}
+
 body
 {
   background-color: #ffcfcf;
