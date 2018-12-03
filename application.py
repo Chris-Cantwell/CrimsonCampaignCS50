@@ -13,7 +13,8 @@ def index():
 
 @app.route("/error", methods=["GET"])
 def error():
-    return render_template("error.html", img="Partial-Credit.jpg")
+    img = open('Partial-Credit.jpg', 'r')
+    return render_template("error.html", img=img)
 
 @app.route("/input", methods=["POST", "GET"])
 def input():
