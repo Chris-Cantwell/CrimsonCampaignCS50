@@ -8,13 +8,17 @@ nav .navbar-brand
 .crimson
 {
     background-color: #990000;
-    color: #FFFFFF;
+}
+
+.nav-item
+{
+  color: #FFFFFF;
 }
 
 .error-image
 {
   align-content: center;
-  
+
 }
 
 body
