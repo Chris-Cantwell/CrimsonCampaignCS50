@@ -13,8 +13,7 @@ def index():
 
 @app.route("/error", methods=["GET"])
 def error():
-    with open('static/Partial-Credit.png', 'r') as img:
-        return render_template("error.html", img=img)
+    return render_template("error.html")
 
 @app.route("/input", methods=["POST", "GET"])
 def input():
@@ -30,4 +29,4 @@ def login():
 
 @app.route("/logout", methods=["POST", "GET"])
 def logout():
-    return render_template("error.html", img=img)
+    return render_template("error.html")
