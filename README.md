@@ -14,6 +14,11 @@ Chris Cantwell's final project for CS50, November 2018.
 * Set up Heroku web Server
 
 ### Code:
+* Login function from Finance
+* HTML files
+* Navbar created
+* Images handled
+* Database link
 
 ## In Progress:
 
