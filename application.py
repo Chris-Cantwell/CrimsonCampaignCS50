@@ -77,7 +77,7 @@ def login():
                           username=request.form.get("username"))
 
         # Ensure username exists and password is correct
-        if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
+        if len(rows) != 1 or not check_password_hash(rows[0]["pass_hash"], request.form.get("password")):
             return redirect("error.html", details="invalid username or password", errorcode='403')
         # Remember which user has logged in
         session["user_id"] = rows[0]["id"]
@@ -142,5 +142,5 @@ def register():
 def logout():
     # Forget any user_id
     session.clear()
-    
+
     return render_template("/")
