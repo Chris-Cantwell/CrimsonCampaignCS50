@@ -21,6 +21,7 @@
     <div>
       <img src="static/ccicon.jpg" height="100" width="166">
     </div>
+    {% if session.user_id %}
     <div>
       <ul class="navbar-nav mr-auto mt-2">
         <li class="nav-item" class={% block home %}{% endblock %}><a class="nav-link" href="/">Home</a></li>
@@ -29,6 +30,14 @@
         <li class="nav-item"><a class="nav-link" href="/error">Log Out</a></li>
       </ul>
     </div>
+    {% else %}
+    <div>
+      <ul class="navbar-nav ml-auto mt-2">
+        <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+        <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
+      </ul>
+    </div>
+    {% endif %}
   </nav>
 
   <!-- Jinja input for body tags of other pages -->
