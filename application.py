@@ -122,12 +122,14 @@ def register():
 
         # Registers new user to database, logs user in
         else:
+            # adds new user to database
+            user = request.form.get("username")
             db.execute("INSERT INTO users (username, pass_hash) VALUES(:username,:password)",
-                       username=request.form.get("username"), password=generate_password_hash(request.form.get("password")))
+                       username=user, password=generate_password_hash(request.form.get("password")))
 
             # Remember which user has logged in
             rows = db.execute("SELECT id FROM users WHERE username = :username",
-                              username=request.form.get("username"))
+                              username=user)
 
             session["user_id"] = rows[0]["id"]
 
