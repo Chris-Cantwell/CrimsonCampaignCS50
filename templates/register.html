@@ -1,19 +1,42 @@
 {% extends "layout.html" %}
 
-{% block title %}Sign Up{% endblock %}
+{% block title %}
+    Sign Up
+{% endblock %}
 
 {% block main %}
+    <form action="/register" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="password" placeholder="Password" type="password">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="confirmation" placeholder="Confirm Password" type="password">
+        </div>
 
-<form action="/register" method="post">
-    <div class="form-group">
-        <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
-    </div>
-    <div class="form-group">
-        <input class="form-control" name="password" placeholder="Password" type="password">
-    </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script>
 
-    <button class="btn btn-primary" type="submit">Log In</button>
-</form>
+            document.querySelector('form').onsubmit = function() {
+                let username;
+                if(document.querySelector('input').name == "username")
+                {
+                    username = document.querySelector('input');
+                }
 
+                $.get("/check", {username: username}, function(taken) {
 
+                    if(taken == true) { return true;}
+                    if(taken == false)
+                    {
+                        alert("Username Already Taken");
+                        return false;
+                    }
+                })};
+        </script>
+
+        <button class="btn btn-primary" type="submit">Log In</button>
+    </form>
 {% endblock %}
