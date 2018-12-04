@@ -73,7 +73,7 @@ def login():
         elif not request.form.get("password"):
             return redirect("error.html", details="must provide password", errorcode='403')
         # Query database for username
-        rows = db.execute("SELECT * FROM users WHERE username = :username",
+        rows = db.execute("SELECT * FROM Users WHERE username = :username",
                           username=request.form.get("username"))
 
         # Ensure username exists and password is correct
@@ -117,16 +117,16 @@ def register():
         elif not request.form.get("password") == request.form.get("confirmation"):
             return redirect("error.html", details="passwords must match", errorcode='400')
         # Ensure username unique
-        elif db.execute("SELECT username FROM users WHERE username = :name", name=request.form.get("username")):
+    elif db.execute("SELECT username FROM Users WHERE username = :name", name=request.form.get("username")):
             return redirect("error.html", details="username already taken", errorcode='400')
 
         # Registers new user to database, logs user in
         else:
-            db.execute("INSERT INTO users (username, hash) VALUES(:username,:password)",
+            db.execute("INSERT INTO Users (username, hash) VALUES(:username,:password)",
                        username=request.form.get("username"), password=generate_password_hash(request.form.get("password")))
 
             # Remember which user has logged in
-            rows = db.execute("SELECT id FROM users WHERE username = :username",
+            rows = db.execute("SELECT id FROM Users WHERE username = :username",
                               username=request.form.get("username"))
 
             session["user_id"] = rows[0]["id"]
