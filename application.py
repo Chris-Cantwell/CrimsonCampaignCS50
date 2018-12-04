@@ -28,18 +28,22 @@ def login_required(f):
     return decorated_function
 
 @app.route("/", methods=["POST", "GET"])
+@login_required
 def index():
     return render_template("index.html")
 
 @app.route("/error", methods=["GET"])
+@login_required
 def error():
     return render_template("error.html")
 
 @app.route("/input", methods=["POST", "GET"])
+@login_required
 def input():
     return render_template("dataInput.html")
 
 @app.route("/search", methods=["POST", "GET"])
+@login_required
 def search():
     return render_template("search.html")
 
