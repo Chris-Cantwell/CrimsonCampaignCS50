@@ -117,7 +117,7 @@ def register():
         elif not request.form.get("password") == request.form.get("confirmation"):
             return redirect("error.html", details="passwords must match", errorcode='400')
         # Ensure username unique
-    elif db.execute("SELECT username FROM Users WHERE username = :name", name=request.form.get("username")):
+        elif db.execute("SELECT username FROM Users WHERE username = :name", name=request.form.get("username")):
             return redirect("error.html", details="username already taken", errorcode='400')
 
         # Registers new user to database, logs user in
