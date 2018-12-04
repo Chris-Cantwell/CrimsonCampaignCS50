@@ -128,8 +128,10 @@ def register():
                        username=user, password=generate_password_hash(request.form.get("password")))
 
             # Remember which user has logged in
-            if rows = db.execute("SELECT id FROM users WHERE username = :username",username=user):
-                session["user_id"] = rows[0]["id"]
+            rows = db.execute("SELECT id FROM users WHERE username = :username",
+                              username=user)
+
+            session["user_id"] = rows[0]["id"]
 
             # Redirect user to home page
             return redirect("/")
