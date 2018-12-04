@@ -30,8 +30,8 @@ Chris Cantwell's final project for CS50, November 2018.
 * *Current Plan: Server: Heroku, Database: PostgressSQL, Controller: Python, Frontend: Flask/Jinja*
 * Get Bare Bones Working Based on C$50 Finance
 * HTML framework
+* Some JS for error messages / login restrictions
 * Additional CSS / Bootstrap for aesthetics
 * Get Database Working
-* Import Data
 * Handle User Accounts
 * Data Visualization

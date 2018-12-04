@@ -140,4 +140,7 @@ def register():
 
 @app.route("/logout", methods=["POST", "GET"])
 def logout():
-    return render_template("error.html")
+    # Forget any user_id
+    session.clear()
+    
+    return render_template("/")
