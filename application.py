@@ -119,10 +119,13 @@ def register():
         # Ensure username unique
         elif db.execute("SELECT username FROM users WHERE username = :name", name=request.form.get("username")):
             return render_template("error.html", details="username already taken")
-        # Ensure password was submitted
+        # Ensure name was submitted
         elif not request.form.get("name"):
             return render_template("error.html", details="must provide name")
-            # Ensure confirmatory password was submitted
+        # Ensure dorm was submitted
+        elif not request.form.get("dorm"):
+            return render_template("error.html", details="must provide dorm")
+        # Ensure campaign type password was submitted
         elif not request.form.get("campaign-type"):
             return render_template("error.html", details="must declare campaign type")
         # Ensure passwords match
@@ -131,8 +134,9 @@ def register():
         else:
             # adds new user to database
             user = request.form.get("username")
-            db.execute("INSERT INTO users (username, pass_hash) VALUES(:username,:password)",
-                       username=user, password=generate_password_hash(request.form.get("password")))
+            db.execute("INSERT INTO users (username, pass_hash, account_type, name, house) VALUES(:username,:password,:type,:name,:house)",
+                       username=user, password=generate_password_hash(request.form.get("password"))
+                       type=request.form.get("campaign-type"), name=request.form.get("name"), house=request.form.get("dorm"))
 
             # Creates a new table based on the campaign type
             if(request.form.get("campaign-type") == "registration"):
