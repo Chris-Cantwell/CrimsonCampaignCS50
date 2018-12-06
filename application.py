@@ -135,7 +135,7 @@ def register():
             # adds new user to database
             user = request.form.get("username")
             db.execute("INSERT INTO users (username, pass_hash, account_type, name, house) VALUES(:username,:password,:type,:name,:house)",
-                       username=user, password=generate_password_hash(request.form.get("password"))
+                       username=user, password=generate_password_hash(request.form.get("password"),
                        type=request.form.get("campaign-type"), name=request.form.get("name"), house=request.form.get("dorm"))
 
             # Creates a new table based on the campaign type
