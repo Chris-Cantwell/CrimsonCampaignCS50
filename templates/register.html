@@ -15,7 +15,18 @@
         <div class="form-group">
             <input class="form-control" name="confirmation" placeholder="Confirm Password" type="password">
         </div>
-
+        <div class="form-group">
+          <input class="form-control" name="name" placeholder="Name" type="text">
+        </div>
+        <div class="form-group">
+          <select class="form-control" name="campaign-type">
+            <option value="registration">Voter Registration</option>
+            <option value="exec">UC Executive</option>
+            <option value="house">UC House / Yard</option>
+            <option value="other">Other Campus-Wide</option>
+          </select>
+          <input class="form-control" name="house" placeholder="House" type="text">
+        </div>
         <button class="btn btn-primary" type="submit">Log In</button>
     </form>
 {% endblock %}

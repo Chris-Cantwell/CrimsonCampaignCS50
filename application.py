@@ -119,6 +119,13 @@ def register():
         # Ensure username unique
         elif db.execute("SELECT username FROM users WHERE username = :name", name=request.form.get("username")):
             return redirect("error.html", details="username already taken", errorcode='400')
+        # Ensure password was submitted
+        elif not request.form.get("name"):
+                return redirect("error.html", details="must provide name", errorcode='400')
+            # Ensure confirmatory password was submitted
+        elif not request.form.get("campaign-type"):
+                return redirect("error.html", details="must declare campaign type", errorcode='400')
+        # Ensure passwords match
 
         # Registers new user to database, logs user in
         else:
@@ -143,4 +150,4 @@ def logout():
     # Forget any user_id
     session.clear()
 
-    return render_template("/")
+    return redirect("/")
