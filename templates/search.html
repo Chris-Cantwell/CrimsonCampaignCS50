@@ -9,28 +9,33 @@
 <input autocomplete="off" autofocus placeholder="name" type="text">
 
 <table>
-  <tr>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>House/Dorm</th>
-    <th>Entryway</th>
-    <th>Contact</th>
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>House/Dorm</th>
+        <th>Entryway</th>
+        <th>Contact</th>
 
-    {% if campaign == "registration" %}
-    <th>State</th>
-    <th>Hometown</th>
-    <th>Registered?</th>
-    <th>Requested?</th>
-    {% endif %}
+        {% if campaign == "registration" %}
+        <th>State</th>
+        <th>Hometown</th>
+        <th>Registered?</th>
+        <th>Requested?</th>
+        {% endif %}
 
-    {% if not (campaign == "registration") %}
-    <th>Support</th>
-    {% endif %}
+        {% if not (campaign == "registration") %}
+        <th>Support</th>
+        {% endif %}
 
-    <th>Voted?</th>
-    <th>Email</th>
-    <th>Phone</th>
-  </tr>
+        <th>Voted?</th>
+        <th>Email</th>
+        <th>Phone</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
 </table>
 
 
@@ -40,7 +45,7 @@
   let input = document.querySelector('input');
     input.onkeyup = function() {
       $.get('/lookup?q=' + input.value, function(data) {
-          document.querySelector('table').innerHTML += data;
+          document.querySelector('tbody').innerHTML += data;
       });
     };
 </script>
