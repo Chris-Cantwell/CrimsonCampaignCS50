@@ -19,6 +19,7 @@ Chris Cantwell's final project for CS50, November 2018.
 * Navbar created
 * Images handled
 * Database link
+* User registration
 
 ## In Progress:
 
