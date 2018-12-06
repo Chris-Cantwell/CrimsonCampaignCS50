@@ -113,7 +113,7 @@ def lookup():
     # Gets active user's username to point to their database
     user = db.execute("SELECT username FROM users WHERE id = :identify", identify=session['user_id'])
     # Gets a list of dicts of all stored voters
-    voters = db.execute("SELECT * FROM " + user[0]['username'] + "WHERE firstname LIKE "
+    voters = db.execute("SELECT * FROM " + user[0]['username'] + " WHERE firstname LIKE "
     ":substr OR lastname LIKE :substr", substr=q)
 
     # Formats voter list as an HTML table, with varying parameters to match campaign type
