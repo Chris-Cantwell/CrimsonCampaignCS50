@@ -24,10 +24,10 @@
     {% if session.user_id %}
     <div>
       <ul class="navbar-nav mr-auto mt-2">
-        <li class="nav-item" class={% block home %}{% endblock %}><a class="nav-link" href="/">Home</a></li>
-        <li class="nav-item" class={% block input %}{% endblock %}><a class="nav-link" href="/error">Data Input</a></li>
-        <li class="nav-item" class={% block search %}{% endblock %}><a class="nav-link" href="/error">Data Search</a></li>
-        <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+        <li class={% block home %}{% endblock %}><a class="nav-link" href="/">Home</a></li>
+        <li class={% block input %}{% endblock %}><a class="nav-link" href="/input">Data Input</a></li>
+        <li class={% block search %}{% endblock %}><a class="nav-link" href="/search">Data Search</a></li>
+        <li><a class="nav-link" href="/logout">Log Out</a></li>
       </ul>
     </div>
     {% else %}
