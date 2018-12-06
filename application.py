@@ -118,61 +118,13 @@ def lookup():
 
     # Formats voter list as an HTML table, with varying parameters to match campaign type
     campaignType = db.execute("SELECT account_type FROM users WHERE id= :identify", identify=session['user_id'])
-    tableFormat = ''
 
-    if campaignType == "register":
-        for voter in voters:
-            tableFormat += "<tr> "
-            tableFormat += "<td>" + voter['firstname'] + "</td>"
-            tableFormat += "<td>" + voter['lastname'] + "</td>"
-            tableFormat += "<td>" + voter['house'] + "</td>"
-            tableFormat += "<td>" + voter['entryway'] + "</td>"
-            # tableFormat += "<td>" + voter['contact'] + "</td>"
-            tableFormat += "<td>" + voter['state'] + "</td>"
-            tableFormat += "<td>" + voter['hometown'] + "</td>"
-            # tableFormat += "<td>" + voter['registered'] + "</td>"
-            # tableFormat += "<td>" + voter['ballotrequest'] + "</td>"
-            # tableFormat += "<td>" + voter['voted'] + "</td>"
-            tableFormat += "<td>" + voter['email'] + "</td>"
-            tableFormat += "<td>" + voter['phone'] + "</td>"
-            tableFormat += "</tr> "
-
-        return tableFormat
-
-    elif campaignType == "house":
-
+    if campaignType == "house":
         dorm = db.execute("SELECT house FROM users WHERE id=:identify", identify=session['user_id'])
-
-        for voter in voters:
-            tableFormat += "<tr> "
-            tableFormat += "<td>" + voter['firstname'] + "</td>"
-            tableFormat += "<td>" + voter['lastname'] + "</td>"
-            tableFormat += "<td>" + dorm[0]['house'] + "</td>"
-            tableFormat += "<td>" + voter['entryway'] + "</td>"
-            # tableFormat += "<td>" + voter['contact'] + "</td>"
-            # tableFormat += "<td>" + voter['support'] + </td>
-            # tableFormat += "<td>" + voter['voted'] + "</td>"
-            tableFormat += "<td>" + voter['email'] + "</td>"
-            tableFormat += "<td>" + voter['phone'] + "</td>"
-            tableFormat += "</tr> "
-
-        return tableFormat
+        return render_template(lookup.html, voters=voters, campaign=campaignType[0]['account_type'], house=dorm[0]['house'])
 
     else:
-        for voter in voters:
-            tableFormat += "<tr> "
-            tableFormat += "<td>" + voter['firstname'] + "</td>"
-            tableFormat += "<td>" + voter['lastname'] + "</td>"
-            tableFormat += "<td>" + voter['house'] + "</td>"
-            tableFormat += "<td>" + voter['entryway'] + "</td>"
-            # tableFormat += "<td>" + voter['contact'] + "</td>"
-            # tableFormat += "<td>" + voter['support'] + </td>
-            # tableFormat += "<td>" + voter['voted'] + "</td>"
-            tableFormat += "<td>" + voter['email'] + "</td>"
-            tableFormat += "<td>" + voter['phone'] + "</td>"
-            tableFormat += "</tr> "
-
-        return tableFormat
+        return render_template(lookup.html, voters=voters, campaign=campaignType[0]['account_type'])
 
 
 @app.route("/login", methods=["POST", "GET"])

@@ -1,0 +1,29 @@
+{% for voter in voters %}
+  <tr>
+    <td> voter['firstname'] </td>
+    <td> voter['lastname'] </td>
+
+    {% if campaign == "house" %}
+    <td> {{house}} </td>
+    {% else %}
+    <td> voter['house'] </td>
+    {% endif %}
+
+    <td> voter['entryway'] </td>
+    <!-- <td> voter['contact'] </td> -->
+
+    {% if campaign == "registration" %}
+    <td> voter['state'] </td>
+    <td>  voter['hometown'] </td>
+    <!-- <td>  voter['registered'] </td> -->
+    <!-- <td> voter['ballotrequest'] </td> -->
+    {% else %}
+    <!-- <td> voter['support'] </td> -->
+    {% endif %}
+
+    <!-- <td>  voter['voted'] </td> -->
+    <td> voter['email'] </td>
+    <td> voter['phone'] </td>
+
+  </tr>
+{% endfor %}
