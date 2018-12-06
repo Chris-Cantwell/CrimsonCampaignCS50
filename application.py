@@ -51,7 +51,7 @@ def input():
     campaignType = db.execute("SELECT account_type FROM users WHERE id=:identify", identify=session['user_id'])
 
     if request.method != "POST":
-        return render_template("dataInput.html", campaign=campaignType[0])
+        return render_template("dataInput.html", campaign=campaignType[0],success=False)
 
     else:
         # Checks for required inputs
