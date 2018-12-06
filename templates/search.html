@@ -3,3 +3,46 @@
 {% block title %}Search{% endblock %}
 
 {% block search %}"nav-item active"{% endblock %}
+
+{% block main %}
+
+<input autocomplete="off" autofocus placeholder="name" type="text">
+
+<table>
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>House/Dorm</th>
+    <th>Entryway</th>
+    <th>Contact</th>
+
+    {% if campaign == "registration" %}
+    <th>State</th>
+    <th>Hometown</th>
+    <th>Registered?</th>
+    <th>Requested?</th>
+    {% endif %}
+
+    {% if not (campaign == "registration") %}
+    <th>Support</th>
+    {% endif %}
+
+    <th>Voted?</th>
+    <th>Email</th>
+    <th>Phone</th>
+  </tr>
+</table>
+
+
+<!-- Sets up jquery -->
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"">
+  let input = document.querySelector('input');
+    input.onkeyup = function() {
+      $.get('/lookup?q=' + input.value, function(data) {
+          document.querySelector('table').innerHTML += data;
+      });
+    };
+</script>
+
+{% endblock %}

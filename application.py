@@ -98,8 +98,81 @@ def input():
 @app.route("/search", methods=["POST", "GET"])
 @login_required
 def search():
+    if request.method != "POST":
+        campaignType = db.execute("SELECT account_type FROM users WHERE id=:identify", identify=session['user_id'])
+        return render_template("search.html", campaign=campaignType[0]['account_type'])
 
-    return render_template("search.html")
+    else:
+        return render_template("update.html")
+
+@app.route("/lookup", methods=["GET"])
+def lookup():
+    # Gets input string from user
+    q = request.args.get("q")
+    # Gets active user's username to point to their database
+    user = db.execute("SELECT username FROM users WHERE id = :identify", identify=session['user_id'])
+    # Gets a list of dicts of all stored voters
+    voters = db.execute("SELECT * FROM " + user[0]['username'] + "WHERE firstname LIKE "
+    ":substr% OR lastname LIKE :substr%", substr=q)
+
+    # Formats voter list as an HTML table, with varying parameters to match campaign type
+    campaignType = db.execute("SELECT account_type FROM users WHERE id=:identify", identify=session['user_id'])
+
+    if campaignType = "register":
+        tableFormat = ''
+        for voter in voters:
+            tableFormat += "<tr> "
+            tableFormat += "<td>" + voter['firstname'] + "</td>"
+            tableFormat += "<td>" + voter['lastname'] + "</td>"
+            tableFormat += "<td>" + voter['house'] + "</td>"
+            tableFormat += "<td>" + voter['entryway'] + "</td>"
+            # tableFormat += "<td>" + voter['contact'] + "</td>"
+            tableFormat += "<td>" + voter['state'] + "</td>"
+            tableFormat += "<td>" + voter['hometown'] + "</td>"
+            # tableFormat += "<td>" + voter['registered'] + "</td>"
+            # tableFormat += "<td>" + voter['ballotrequest'] + "</td>"
+            # tableFormat += "<td>" + voter['voted'] + "</td>"
+            tableFormat += "<td>" + voter['email'] + "</td>"
+            tableFormat += "<td>" + voter['phone'] + "</td>"
+            tableFormat += "</tr> "
+
+        return tableFormat
+
+    elif campaignType = "house":
+
+        dorm = db.execute("SELECT house FROM users WHERE id=:identify", identify=session['user_id'])
+
+        for voter in voters:
+            tableFormat += "<tr> "
+            tableFormat += "<td>" + voter['firstname'] + "</td>"
+            tableFormat += "<td>" + voter['lastname'] + "</td>"
+            tableFormat += "<td>" + dorm[0]['house'] + "</td>"
+            tableFormat += "<td>" + voter['entryway'] + "</td>"
+            # tableFormat += "<td>" + voter['contact'] + "</td>"
+            # tableFormat += "<td>" + voter['support'] + </td>
+            # tableFormat += "<td>" + voter['voted'] + "</td>"
+            tableFormat += "<td>" + voter['email'] + "</td>"
+            tableFormat += "<td>" + voter['phone'] + "</td>"
+            tableFormat += "</tr> "
+
+        return tableFormat
+
+    else:
+        for voter in voters:
+            tableFormat += "<tr> "
+            tableFormat += "<td>" + voter['firstname'] + "</td>"
+            tableFormat += "<td>" + voter['lastname'] + "</td>"
+            tableFormat += "<td>" + voter['house'] + "</td>"
+            tableFormat += "<td>" + voter['entryway'] + "</td>"
+            # tableFormat += "<td>" + voter['contact'] + "</td>"
+            # tableFormat += "<td>" + voter['support'] + </td>
+            # tableFormat += "<td>" + voter['voted'] + "</td>"
+            tableFormat += "<td>" + voter['email'] + "</td>"
+            tableFormat += "<td>" + voter['phone'] + "</td>"
+            tableFormat += "</tr> "
+
+        return tableFormat
+
 
 @app.route("/login", methods=["POST", "GET"])
 def login():
@@ -230,10 +303,10 @@ def register():
 
             db.execute("CREATE SEQUENCE " + user + "_voterid_seq START WITH 1 INCREMENT BY 1;")"
 
-            db.execute("ALTER TABLE " + user + "
-            "ALTER "voterid" TYPE integer,"
-            "ALTER "voterid" SET DEFAULT nextval(" + user + "l_voterid_seq"),"
-            "ALTER "voterid" SET NOT NULL;")
+            db.execute("ALTER TABLE " + user + ""
+            "ALTER 'voterid' TYPE integer,"
+            "ALTER 'voterid' SET DEFAULT nextval(" + user + "l_voterid_seq"),"
+            "ALTER 'voterid' SET NOT NULL;")
 
             # Remember which user has logged in
             rows = db.execute("SELECT id FROM users WHERE username = :username",
@@ -243,7 +316,6 @@ def register():
 
             # Redirect user to home page
             return redirect("/")
-
 
 
 @app.route("/logout", methods=["POST", "GET"])
