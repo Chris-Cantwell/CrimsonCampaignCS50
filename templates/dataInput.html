@@ -3,3 +3,70 @@
 {% block title %}Input{% endblock %}
 
 {% block input %}"nav-item active"{% endblock %}
+
+{% block main %}
+
+<form action="/dataInput" method="POST">
+    <div class="form-group">
+        <input autocomplete="off" autofocus class="form-control" name="firstname" placeholder="First Name" type="text">
+    </div>
+    <div class="form-group">
+        <input class="form-control" name="lastname" placeholder="Last Name" type="text">
+    </div>
+    <div class="form-group">
+      <input class="form-control" name="entryway" placeholder="Entryway" type="text">
+    </div>
+
+    {{% if {campaign} != house %}}
+
+    <div class="form-group">
+        <input class="form-control" name="house" placeholder="House or Dorm" type="text">
+    </div>
+
+    {{% endif %}}
+
+    {{% if {campaign} == registration %}}
+
+    <!-- Radio Buttons: Voter Contacted? -->
+    <div class="form-group">
+      <input class="form-control" name="state" placeholder="State" type="text">
+    </div>
+    <div class="form-group">
+      <input class="form-control" name="hometown" placeholder="Hometown" type="text">
+    </div>
+    <!-- Radio Buttons: Registered? -->
+    <!-- Radio Buttons: Ballot Request? -->
+
+    {{% endif %}}
+
+    {{% if {campaign} != registration %}}
+
+    <div class="form-group">
+      <select class="form-control" name="campaign-type">
+        <option disabled>Select Your Support Level</option>
+        <option value="1">1: Strong Support</option>
+        <option value="2">2: Leaning Support</option>
+        <option value="3">3: Neutral / Undecided</option>
+        <option value="4">4: Leaning Against</option>
+        <option value="5">5: Strong Opposition</option>
+      </select>
+    </div>
+
+    {{% endif %}}
+
+    <div class="form-group">
+      <input class="form-control" name="house" placeholder="House" type="text">
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+
+    <!-- Radio Buttons: Did they vote? -->
+    <div class="form-group">
+      <input class="form-control" name="Email" placeholder="Email" type="text">
+    </div>
+    <div class="form-group">
+      <input class="form-control" name="Phone" placeholder="Phone Number" type="text">
+    </div>
+
+</form>
+
+{% endblock %}

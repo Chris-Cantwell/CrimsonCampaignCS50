@@ -48,11 +48,19 @@ def error():
 @app.route("/input", methods=["POST", "GET"])
 @login_required
 def input():
-    return render_template("dataInput.html")
+
+    if request.method == "GET":
+        campaign-type = db.execute("SELECT account_type FROM users WHERE id=:identify", identify=session['user_id'])
+        return render_template("dataInput.html", campaign=campaign-type[0])
+
+    else:
+        return render_template("dataInput.html", campaign=campaign-type[0])
+
 
 @app.route("/search", methods=["POST", "GET"])
 @login_required
 def search():
+
     return render_template("search.html")
 
 @app.route("/login", methods=["POST", "GET"])
