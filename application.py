@@ -41,7 +41,6 @@ def index():
     return render_template("index.html")
 
 @app.route("/error", methods=["GET"])
-@login_required
 def error():
     return render_template("error.html")
 
@@ -113,18 +112,18 @@ def login():
 
         # Ensure username was submitted
         if not request.form.get("username"):
-            return redirect("error.html", details="must provide username", errorcode='403')
+            return render_template("error.html", details="must provide username")
 
         # Ensure password was submitted
         elif not request.form.get("password"):
-            return redirect("error.html", details="must provide password", errorcode='403')
+            return render_template("error.html", details="must provide password")
         # Query database for username
         rows = db.execute("SELECT * FROM users WHERE username = :username",
                           username=request.form.get("username"))
 
         # Ensure username exists and password is correct
         if len(rows) != 1 or not check_password_hash(rows[0]["pass_hash"], request.form.get("password")):
-            return redirect("error.html", details="invalid username or password", errorcode='403')
+            return render_template("error.html", details="invalid username or password")
         # Remember which user has logged in
         session["user_id"] = rows[0]["id"]
 
