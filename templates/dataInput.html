@@ -23,7 +23,7 @@
       <input class="form-control" name="entryway" placeholder="Entryway" type="text">
     </div>
 
-    {% if campaign not == "house" %}
+    {% if campaign == not "house" %}
 
     <div class="form-group">
         <input class="form-control" name="house" placeholder="House or Dorm" type="text">
@@ -45,7 +45,7 @@
 
     {% endif %}
 
-    {% if campaign not == "registration" %}
+    {% if campaign == not "registration" %}
 
     <div class="form-group">
       <select class="form-control" name="campaign-type">
