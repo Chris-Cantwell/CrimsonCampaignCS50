@@ -47,6 +47,7 @@ def error():
 @app.route("/input", methods=["POST", "GET"])
 @login_required
 def input():
+    # Selects campaign type to guide databae options
     campaignType = db.execute("SELECT account_type FROM users WHERE id=:identify", identify=session['user_id'])
 
     if request.method != "POST":
@@ -74,7 +75,7 @@ def input():
                        state=request.form.get("state"), hometown=request.form.get("hometown"),
                        email=request.form.get("email"), phone=request.form.get("phone"))
 
-        elif campaign-type[0] == "house":
+        elif campaignType[0] == "house":
             db.execute("INSERT INTO " + user[0] + " (firstname, lastname, house,"
                        "entryway, state, hometown, email, phone)"
                        "VALUES (:firstname, :lastname,:entryway, :email, :phone)",
