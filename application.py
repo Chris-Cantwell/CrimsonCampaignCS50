@@ -139,7 +139,7 @@ def register():
                        type=request.form.get("campaign-type"), name=request.form.get("name"), house=request.form.get("dorm"))
 
             # Creates a new table based on the campaign type
-            if(request.form.get("campaign-type") == "registration"):
+            if request.form.get("campaign-type") == "registration":
                 db.execute("CREATE TABLE " + user + " ("
                            "VoterId int UNIQUE,"
                            "FirstName varchar(128),"
@@ -155,7 +155,7 @@ def register():
                            "Email varchar(255),"
                            "Phone varchar(20))")
 
-            elif(request.form.get("campaign-type") == "house"):
+            elif request.form.get("campaign-type") == "house":
                 db.execute("CREATE TABLE :username ("
                            "VoterId int UNIQUE,"
                            "FirstName varchar(128),"
