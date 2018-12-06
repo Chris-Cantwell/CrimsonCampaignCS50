@@ -136,48 +136,45 @@ def register():
 
             # Creates a new table based on the campaign type
             if(request.form.get("campaign-type") == "registration"):
-                db.execute("""CREATE TABLE :username (
-                           VoterId int UNIQUE,
-                           FirstName varchar(128),
-                           LastName varchar(128),
-                           House varchar(64),
-                           Entryway varchar(64),
-                           Contact boolean,
-                           State varchar(64),
-                           Hometown varchar(128),
-                           Registered boolean,
-                           Ballot request boolean,
-                           Voted boolean,
-                           Email varchar(255),
-                           Phone varchar(20)
-                           )""", username=user)
+                db.execute("CREATE TABLE :username ("
+                           "VoterId int UNIQUE,"
+                           "FirstName varchar(128),"
+                           "LastName varchar(128),"
+                           "House varchar(64),"
+                           "Entryway varchar(64),"
+                           "Contact boolean,"
+                           "State varchar(64),"
+                           "Hometown varchar(128),"
+                           "Registered boolean,"
+                           "Ballot request boolean,"
+                           "Voted boolean,"
+                           "Email varchar(255),"
+                           "Phone varchar(20)"), username=user)
 
             elif(request.form.get("campaign-type") == "house"):
-                db.execute("""CREATE TABLE :username (
-                           VoterId int UNIQUE,
-                           FirstName varchar(128),
-                           LastName varchar(128),
-                           Entryway varchar(64),
-                           Contact boolean,
-                           Support smallint,
-                           Voted boolean,
-                           Email varchar(255),
-                           Phone varchar(20)
-                           )""", username=user)
+                db.execute("CREATE TABLE :username ("
+                           "VoterId int UNIQUE,"
+                           "FirstName varchar(128),"
+                           "LastName varchar(128),"
+                           "Entryway varchar(64),"
+                           "Contact boolean,"
+                           "Support smallint,"
+                           "Email varchar(255),"
+                           "Voted boolean,"
+                           "Phone varchar(20)"), username=user)
 
             else:
-                db.execute("""CREATE TABLE :username (
-                           VoterId int UNIQUE,
-                           FirstName varchar(128),
-                           LastName varchar(128),
-                           House varchar(64),
-                           Entryway varchar(64),
-                           Contact boolean,
-                           Support smallint,
-                           Voted boolean,
-                           Email varchar(255),
-                           Phone varchar(20)
-                           )""", username=user)
+                db.execute("CREATE TABLE :username ("
+                           "VoterId int UNIQUE,"
+                           "FirstName varchar(128),"
+                           "LastName varchar(128),"
+                           "House varchar(64),"
+                           "Entryway varchar(64),"
+                           "Support smallint,"
+                           "Contact boolean,"
+                           "Voted boolean,"
+                           "Email varchar(255),"
+                           "Phone varchar(20)"), username=user)
 
             # Remember which user has logged in
             rows = db.execute("SELECT id FROM users WHERE username = :username",
