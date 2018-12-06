@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session, flash
+from flask import Flask, render_template, request, redirect, session, flash, jsonify
 from flask_session import Session
 import os
 from cs50 import SQL
@@ -136,7 +136,7 @@ def register():
             user = request.form.get("username")
             db.execute("INSERT INTO users (username, pass_hash, account_type, name, house) VALUES(:username,:password,:type,:name,:house)",
                        username=user, password=generate_password_hash(request.form.get("password"),
-                       type=request.form.get("campaign-type"), name=request.form.get("name"), house=request.form.get("dorm"))
+                       type=request.form.get("campaign-type"), name=request.form.get("name"), house=request.form.get("dorm")))
 
             # Creates a new table based on the campaign type
             if request.form.get('campaign-type') == 'registration':
