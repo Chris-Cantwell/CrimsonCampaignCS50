@@ -123,8 +123,8 @@ def register():
         elif not request.form.get("name"):
             return render_template("error.html", details="must provide name")
         # Ensure dorm was submitted
-        elif not request.form.get("dorm"):
-            return render_template("error.html", details="must provide dorm")
+    elif not request.form.get("house"):
+            return render_template("error.html", details="must provide dorm/house")
         # Ensure campaign type password was submitted
         elif not request.form.get("campaign-type"):
             return render_template("error.html", details="must declare campaign type")
