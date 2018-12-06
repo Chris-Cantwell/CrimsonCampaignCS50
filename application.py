@@ -118,9 +118,9 @@ def lookup():
 
     # Formats voter list as an HTML table, with varying parameters to match campaign type
     campaignType = db.execute("SELECT account_type FROM users WHERE id= :identify", identify=session['user_id'])
+    tableFormat = ''
 
     if campaignType == "register":
-        tableFormat = ''
         for voter in voters:
             tableFormat += "<tr> "
             tableFormat += "<td>" + voter['firstname'] + "</td>"
