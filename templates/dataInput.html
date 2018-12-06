@@ -12,7 +12,7 @@
 </script>
 {% endif %}
 
-<form action="/dataInput" method="POST">
+<form action="/input" method="POST">
     <div class="form-group">
         <input autocomplete="off" autofocus class="form-control" name="firstname" placeholder="First Name" type="text">
     </div>
@@ -23,7 +23,7 @@
       <input class="form-control" name="entryway" placeholder="Entryway" type="text">
     </div>
 
-    {% if campaign != "house" %}
+    {% if campaign is not "house" %}
 
     <div class="form-group">
         <input class="form-control" name="house" placeholder="House or Dorm" type="text">
@@ -31,7 +31,7 @@
 
     {% endif %}
 
-    {% if campaign == "registration" %}
+    {% if campaign is "registration" %}
 
     <!-- Radio Buttons: Voter Contacted? -->
     <div class="form-group">
@@ -45,7 +45,7 @@
 
     {% endif %}
 
-    {% if campaign != "registration" %}
+    {% if campaign is not "registration" %}
 
     <div class="form-group">
       <select class="form-control" name="campaign-type">
