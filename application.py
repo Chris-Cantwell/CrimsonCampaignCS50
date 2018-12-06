@@ -136,7 +136,7 @@ def register():
 
             # Creates a new table based on the campaign type
             if(request.form.get("campaign-type") == "registration"):
-                db.execute("CREATE TABLE :username ("
+                db.execute("CREATE TABLE " + user + " ("
                            "VoterId int UNIQUE,"
                            "FirstName varchar(128),"
                            "LastName varchar(128),"
@@ -149,7 +149,7 @@ def register():
                            "Ballot request boolean,"
                            "Voted boolean,"
                            "Email varchar(255),"
-                           "Phone varchar(20))", username=user)
+                           "Phone varchar(20))")
 
             elif(request.form.get("campaign-type") == "house"):
                 db.execute("CREATE TABLE :username ("
