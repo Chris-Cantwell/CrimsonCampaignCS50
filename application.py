@@ -301,7 +301,7 @@ def register():
 
             # Sets up autoincrement
 
-            db.execute("CREATE SEQUENCE " + user + "_voterid_seq START WITH 1 INCREMENT BY 1;")"
+            db.execute("CREATE SEQUENCE " + user + "_voterid_seq START WITH 1 INCREMENT BY 1;")
 
             db.execute("ALTER TABLE " + user + ""
             "ALTER 'voterid' TYPE integer,"
