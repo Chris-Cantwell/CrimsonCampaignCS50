@@ -146,7 +146,7 @@ def register():
                            "State varchar(64),"
                            "Hometown varchar(128),"
                            "Registered boolean,"
-                           "Ballot request boolean,"
+                           "BallotRequest boolean,"
                            "Voted boolean,"
                            "Email varchar(255),"
                            "Phone varchar(20))")
