@@ -51,7 +51,7 @@ def input():
     campaignType = db.execute("SELECT account_type FROM users WHERE id=:identify", identify=session['user_id'])
 
     if request.method != "POST":
-        return render_template("dataInput.html", campaign=campaign-type[0])
+        return render_template("dataInput.html", campaign=campaignType[0])
 
     else:
         # Checks for required inputs
@@ -65,7 +65,7 @@ def input():
         # Gets username from user_id
         user = db.execute("SELECT username FROM users WHERE id = :identify", identify=session['user_id'])
         # Adds voter to database
-        if campaign-type[0] == "registration":
+        if campaignType[0] == "registration":
             db.execute("INSERT INTO " + user[0] + " (firstname, lastname, house,"
                        "entryway, state, hometown, email, phone)"
                        "VALUES (:firstname, :lastname, :house,"
