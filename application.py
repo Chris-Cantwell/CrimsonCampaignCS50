@@ -149,7 +149,7 @@ def register():
                            "Ballot request boolean,"
                            "Voted boolean,"
                            "Email varchar(255),"
-                           "Phone varchar(20)"), username=user)
+                           "Phone varchar(20))", username=user)
 
             elif(request.form.get("campaign-type") == "house"):
                 db.execute("CREATE TABLE :username ("
@@ -161,7 +161,7 @@ def register():
                            "Support smallint,"
                            "Email varchar(255),"
                            "Voted boolean,"
-                           "Phone varchar(20)"), username=user)
+                           "Phone varchar(20))", username=user)
 
             else:
                 db.execute("CREATE TABLE :username ("
@@ -174,7 +174,7 @@ def register():
                            "Contact boolean,"
                            "Voted boolean,"
                            "Email varchar(255),"
-                           "Phone varchar(20)"), username=user)
+                           "Phone varchar(20))", username=user)
 
             # Remember which user has logged in
             rows = db.execute("SELECT id FROM users WHERE username = :username",
