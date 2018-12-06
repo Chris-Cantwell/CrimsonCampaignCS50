@@ -92,7 +92,7 @@ def input():
                        house=request.form.get("house"), entryway=request.form.get("entryway"),
                        email=request.form.get("email"), phone=request.form.get("phone"))
 
-        return render_template("dataInput.html", campaign=campaign-type[0], success=True)
+        return redirect("/input", campaign=campaign-type[0], success=True)
 
 
 @app.route("/search", methods=["POST", "GET"])
