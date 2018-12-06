@@ -106,25 +106,25 @@ def register():
 
         # Ensure username was submitted
         if not request.form.get("username"):
-            return redirect("error.html", details="must provide username", errorcode='400')
+            return redirect("error.html", details="must provide username")
         # Ensure password was submitted
         elif not request.form.get("password"):
-            return redirect("error.html", details="must provide password", errorcode='400')
+            return redirect("error.html", details="must provide password")
         # Ensure confirmatory password was submitted
         elif not request.form.get("confirmation"):
-            return redirect("error.html", details="must confirm password", errorcode='400')
+            return redirect("error.html", details="must confirm password")
         # Ensure passwords match
         elif not request.form.get("password") == request.form.get("confirmation"):
-            return redirect("error.html", details="passwords must match", errorcode='400')
+            return redirect("error.html", details="passwords must match")
         # Ensure username unique
         elif db.execute("SELECT username FROM users WHERE username = :name", name=request.form.get("username")):
-            return redirect("error.html", details="username already taken", errorcode='400')
+            return redirect("error.html", details="username already taken")
         # Ensure password was submitted
         elif not request.form.get("name"):
-                return redirect("error.html", details="must provide name", errorcode='400')
+                return redirect("error.html", details="must provide name")
             # Ensure confirmatory password was submitted
         elif not request.form.get("campaign-type"):
-                return redirect("error.html", details="must declare campaign type", errorcode='400')
+                return redirect("error.html", details="must declare campaign type")
         # Ensure passwords match
 
         # Registers new user to database, logs user in
