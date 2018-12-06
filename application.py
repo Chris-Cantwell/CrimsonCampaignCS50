@@ -106,6 +106,7 @@ def search():
         return render_template("update.html")
 
 @app.route("/lookup", methods=["GET"])
+@login_required
 def lookup():
     # Gets input string from user
     q = request.args.get("q")
@@ -116,7 +117,7 @@ def lookup():
     ":substr OR lastname LIKE :substr", substr=q)
 
     # Formats voter list as an HTML table, with varying parameters to match campaign type
-    campaignType = db.execute("SELECT account_type FROM users WHERE id=:identify", identify=session['user_id'])
+    campaignType = db.execute("SELECT account_type FROM users WHERE id= :identify", identify=session['user_id'])
 
     if campaignType == "register":
         tableFormat = ''
