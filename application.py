@@ -138,8 +138,9 @@ def register():
                        username=user, password=generate_password_hash(request.form.get("password"),
                        type=request.form.get("campaign-type"), name=request.form.get("name"), house=request.form.get("dorm"))
 
+            campaignType = request.form.get("campaign-type")
             # Creates a new table based on the campaign type
-            if request.form.get("campaign-type") == 'registration':
+            if campaignType == 'registration':
                 db.execute("CREATE TABLE " + user + " ("
                            "VoterId int UNIQUE,"
                            "FirstName varchar(128),"
