@@ -69,7 +69,7 @@ def input():
             db.execute("INSERT INTO " + user[0]['username'] + " (firstname, lastname, house,"
                        "entryway, state, hometown, email, phone)"
                        "VALUES (:firstname, :lastname, :house,"
-                       ":entryway, :state, :hometown, email, :phone)",
+                       ":entryway, :state, :hometown, :email, :phone)",
                        firstname=request.form.get("firstname"), lastname=request.form.get("lastname"),
                        house=request.form.get("house"), entryway=request.form.get("entryway"),
                        state=request.form.get("state"), hometown=request.form.get("hometown"),
