@@ -48,7 +48,7 @@ def error():
 @app.route("/input", methods=["POST", "GET"])
 @login_required
 def input():
-    campaign-type = db.execute("SELECT account_type FROM users WHERE id=:identify", identify=session['user_id'])
+    campaignType = db.execute("SELECT account_type FROM users WHERE id=:identify", identify=session['user_id'])
 
     if request.method != "POST":
         return render_template("dataInput.html", campaign=campaign-type[0])
