@@ -6,11 +6,11 @@
 
 {% block main %}
 
-{{% if {{success}} == True %}}
+{% if {{success}} == True %}
 <script type="text/javascript">
 alert("User added successfully")
 </script>
-{{% endif %}}
+{% endif %}
 
 <form action="/dataInput" method="POST">
     <div class="form-group">
@@ -23,15 +23,15 @@ alert("User added successfully")
       <input class="form-control" name="entryway" placeholder="Entryway" type="text">
     </div>
 
-    {{% if {campaign} != house %}}
+    {% if {campaign} != house %}
 
     <div class="form-group">
         <input class="form-control" name="house" placeholder="House or Dorm" type="text">
     </div>
 
-    {{% endif %}}
+    {% endif %}
 
-    {{% if {campaign} == registration %}}
+    {% if {campaign} == registration %}
 
     <!-- Radio Buttons: Voter Contacted? -->
     <div class="form-group">
@@ -43,9 +43,9 @@ alert("User added successfully")
     <!-- Radio Buttons: Registered? -->
     <!-- Radio Buttons: Ballot Request? -->
 
-    {{% endif %}}
+    {% endif %}
 
-    {{% if {campaign} != registration %}}
+    {% if {campaign} != registration %}
 
     <div class="form-group">
       <select class="form-control" name="campaign-type">
@@ -58,7 +58,7 @@ alert("User added successfully")
       </select>
     </div>
 
-    {{% endif %}}
+    {% endif %}
 
     <!-- Radio Buttons: Did they vote? -->
     <div class="form-group">
