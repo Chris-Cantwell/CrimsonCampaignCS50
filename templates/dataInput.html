@@ -6,6 +6,12 @@
 
 {% block main %}
 
+{{% if {{success}} == True %}}
+<script type="text/javascript">
+alert("User added successfully")
+</script>
+{{% endif %}}
+
 <form action="/dataInput" method="POST">
     <div class="form-group">
         <input autocomplete="off" autofocus class="form-control" name="firstname" placeholder="First Name" type="text">
@@ -54,18 +60,14 @@
 
     {{% endif %}}
 
-    <div class="form-group">
-      <input class="form-control" name="house" placeholder="House" type="text">
-    </div>
-    <button class="btn btn-primary" type="submit">Submit</button>
-
     <!-- Radio Buttons: Did they vote? -->
     <div class="form-group">
-      <input class="form-control" name="Email" placeholder="Email" type="text">
+      <input class="form-control" name="email" placeholder="Email" type="text">
     </div>
     <div class="form-group">
-      <input class="form-control" name="Phone" placeholder="Phone Number" type="text">
+      <input class="form-control" name="phone" placeholder="Phone Number" type="text">
     </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
 
 </form>
 

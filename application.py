@@ -48,13 +48,51 @@ def error():
 @app.route("/input", methods=["POST", "GET"])
 @login_required
 def input():
+    campaign-type = db.execute("SELECT account_type FROM users WHERE id=:identify", identify=session['user_id'])
 
-    if request.method == "GET":
-        campaign-type = db.execute("SELECT account_type FROM users WHERE id=:identify", identify=session['user_id'])
+    if request.method != "POST":
         return render_template("dataInput.html", campaign=campaign-type[0])
 
     else:
-        return render_template("dataInput.html", campaign=campaign-type[0])
+        # Checks for required inputs
+
+        if not request.form.get("firstname"):
+            return render_template("error.html", details="must provide first name")
+
+        if not request.form.get("lastname"):
+            return render_template("error.html", details="must provide last name")
+
+        # Gets username from user_id
+        user = db.execute("SELECT username FROM users WHERE id = :identify", identify=session['user_id'])
+        # Adds voter to database
+        if campaign-type[0] == "registration":
+            db.execute("INSERT INTO " + user[0] + " (firstname, lastname, house,"
+                       "entryway, state, hometown, email, phone)"
+                       "VALUES (:firstname, :lastname, :house,"
+                       ":entryway, :state, :hometown, email, :phone)",
+                       firstname=request.form.get("firstname"), lastname=request.form.get("lastname"),
+                       house=request.form.get("house"), entryway=request.form.get("entryway"),
+                       state=request.form.get("state"), hometown=request.form.get("hometown"),
+                       email=request.form.get("email"), phone=request.form.get("phone"))
+
+        elif campaign-type[0] == "house":
+            db.execute("INSERT INTO " + user[0] + " (firstname, lastname, house,"
+                       "entryway, state, hometown, email, phone)"
+                       "VALUES (:firstname, :lastname,:entryway, :email, :phone)",
+                       firstname=request.form.get("firstname"), lastname=request.form.get("lastname"),
+                       entryway=request.form.get("entryway"),email=request.form.get("email"),
+                       phone=request.form.get("phone"))
+
+        else:
+            db.execute("INSERT INTO " + user[0] + " (firstname, lastname, house,"
+                       "entryway, email, phone)"
+                       "VALUES (:firstname, :lastname, :house,"
+                       ":entryway, :email, :phone)",
+                       firstname=request.form.get("firstname"), lastname=request.form.get("lastname"),
+                       house=request.form.get("house"), entryway=request.form.get("entryway"),
+                       email=request.form.get("email"), phone=request.form.get("phone"))
+
+        return render_template("dataInput.html", campaign=campaign-type[0], success=True)
 
 
 @app.route("/search", methods=["POST", "GET"])
