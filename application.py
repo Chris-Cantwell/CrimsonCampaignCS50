@@ -305,7 +305,7 @@ def register():
 
             db.execute("ALTER TABLE " + user + ""
             "ALTER 'voterid' TYPE integer,"
-            "ALTER 'voterid' SET DEFAULT nextval(" + user + "l_voterid_seq"),"
+            "ALTER 'voterid' SET DEFAULT nextval('" + user + "l_voterid_seq'),"
             "ALTER 'voterid' SET NOT NULL;")
 
             # Remember which user has logged in
