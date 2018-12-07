@@ -388,9 +388,9 @@ def register():
             db.execute("CREATE SEQUENCE " + user + "_voterid_seq START WITH 1 INCREMENT BY 1;")
 
             db.execute("ALTER TABLE " + user + " "
-            "ALTER 'voterid' TYPE integer,"
-            "ALTER 'voterid' SET DEFAULT nextval('" + user + "l_voterid_seq'),"
-            "ALTER 'voterid' SET NOT NULL;")
+            "ALTER voterid TYPE integer,"
+            "ALTER voterid SET DEFAULT nextval('" + user + "_voterid_seq'),"
+            "ALTER voterid SET NOT NULL;")
 
             # Remember which user has logged in
             rows = db.execute("SELECT id FROM users WHERE username = :username",
