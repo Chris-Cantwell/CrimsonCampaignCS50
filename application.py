@@ -122,10 +122,10 @@ def lookup():
 
         if campaignType == "house":
             dorm = db.execute("SELECT house FROM users WHERE id=:identify", identify=session['user_id'])
-            return redirect("lookup.html", voters=voters, campaign=campaignType[0]['account_type'], house=dorm[0]['house'])
+            return render_template("lookup.html", voters=voters, campaign=campaignType[0]['account_type'], house=dorm[0]['house'])
 
         else:
-            return redirect("lookup.html", voters=voters, campaign=campaignType[0]['account_type'])
+            return render_template("lookup.html", voters=voters, campaign=campaignType[0]['account_type'])
 
 
 
