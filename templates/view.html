@@ -3,3 +3,14 @@
 {% block title %}View{% endblock %}
 
 {% block view %}"nav-item active"{% endblock %}
+
+{% block main %}
+
+<form action="/view" method="POST">
+  <select name="district">
+    <option></option>
+  </select>
+  <input type="Submit" value="Submit">
+</form>
+
+{% endblock %}
