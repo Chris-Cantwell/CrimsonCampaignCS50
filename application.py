@@ -235,38 +235,104 @@ def view():
 
     # Defaults to just displaying the form
     if request.method == "GET":
-        return render_template("view")
+        return render_template("view", show=False)
 
     if request.method == "POST":
         district = request.form.get("district")
 
         # Gets database info
-        rows = db.execute("SELECT * FROM users WHERE id = :identify",
+        user = db.execute("SELECT username FROM users WHERE id = :identify",
                           identify=session['user_id'])
+        rows = db.execute("SELECT * FROM " + user[0]['username'] + "")
 
+        # Draws a pie chart of voter reg information using matplotlib
         if session['campaign_type'] == "registration":
 
-            registered = []
-            ballot_requested = []
+            registered = 0
+            ballot_requsest = 0
+            voted = 0
+            contact = 0
 
-            # TODO
+            # Counts how many members of each category are present
+            # Doesn't double count, assuming those who've completed later steps
+            # have also done the pre-rec (to vote you have to be registered)
+            for row in rows:
+                if row['voted']:
+                    voted += 1
+                elif row['ballotrequest']:
+                    ballot_request += 1
+                elif row['registered']:
+                    registered += 1
+                elif row['contact']
+                    contact += 1
+
+            no_contact = housePop['district'] - (registered + ballot_request + voted)
+
+            # Pie chart, where the slices will be ordered and plotted counter-clockwise:
+            labels = 'Registered', 'Ballot Requested', 'Voted', 'Contacted', 'Not Contacted'
+            sizes = [registered // housePop['district'], ballot_request // housePop['district'],
+                     voted // housePop['district'], contact // housePop['district'],
+                     no_contact // housePop['district']]
+
+            explode = (0, 0, 0.2, 0, 0)  # Causes the referenced slice ("voted") to pop out)
+
+            fig1, ax1 = plt.subplots()
+            ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
+                    shadow=True, startangle=90)
+            ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+
+            plt.savefig('static/chart.png', bbox_inches='tight')
+            return render_template("view.html", show=True)
+        # Draws a pie chart of voter contact information using matplotlib
+        else:
+
+            support = 0
+            lean_yes = 0
+            undecided = 0
+            lean_no = 0
+            oppose = 0
+            contact = 0
+
+            # Counts how many members of each category are present
+            # Doesn't double count, assuming those who've completed later steps
+            # have also done the pre-rec (to vote you have to be registered)
+            for row in rows:
+                if row['support'] == 1:
+                    support += 1
+                elif row['support'] == 2:
+                    lean_yes += 1
+                elif row['support'] == 3:
+                    undecided += 1
+                elif row['support'] == 4:
+                    lean_no += 1
+                elif row['support'] == 5:
+                    oppose += 1
+                elif row['contact']:
+                    contact += 1
+
+            no_contact = housePop['district'] - (support + lean_yes + undecided
+                                                 lean_no + oppose + contact)
+
+            # Pie chart, where the slices will be ordered and plotted counter-clockwise:
+            labels = 'Support', 'Leaning Support', 'Undecided', 'Leaning Oppose', 'Oppose', 'Contacted', 'Not Contacted'
+            sizes = [support // housePop['district'], lean_yes // housePop['district'],
+                     undecided // housePop['district'], lean_no // housePop['district'],
+                     oppose // housePop['district'], contact // housePop['district']
+                     no_contact // housePop['district']]
+
+            explode = (0, 0, 0.2, 0, 0)  # Causes the referenced slice ("voted") to pop out)
+
+            fig1, ax1 = plt.subplots()
+            ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
+                    shadow=True, startangle=90)
+            ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+
+            # Saves image to be displayed
+            plt.savefig('static/chart.png', bbox_inches='tight')
+
+            return render_template("view.html", show=True)
 
 
-    return render_template("update.html")
-
-'''
-    # Pie chart, where the slices will be ordered and plotted counter-clockwise:
-    labels = 'Frogs', 'Hogs', 'Dogs', 'Logs'
-    sizes = [15, 30, 45, 10]
-    explode = (0, 0.1, 0, 0)  # only "explode" the 2nd slice (i.e. 'Hogs')
-
-    fig1, ax1 = plt.subplots()
-    ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
-            shadow=True, startangle=90)
-    ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-
-    plt.show()
-'''
 @app.route("/login", methods=["POST", "GET"])
 def login():
     """Log user in"""
