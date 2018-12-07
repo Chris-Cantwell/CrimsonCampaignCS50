@@ -45,7 +45,7 @@
 <script type="text/javascript">
   let input = document.querySelector('input');
     input.onkeyup = function() {
-      $.get('/lookup?q=' + input.value, function(data) {
+      $.get($SCRIPT_ROOT + '/lookup?q=' + input.value, function(data) {
           document.querySelector('tbody').innerHTML += data;
       });
     };
