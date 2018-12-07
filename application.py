@@ -96,7 +96,9 @@ def login_required(f):
 @app.route("/", methods=["POST", "GET"])
 @login_required
 def index():
-    return render_template("index.html")
+    name = db.execute("SELECT name FROM users WHERE id=:identify", identify=session['user_id'])
+
+    return render_template("index.html", name=name[0]['name'])
 
 # Route which renders an image and can list details on user errors
 @app.route("/error", methods=["GET"])
