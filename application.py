@@ -317,7 +317,7 @@ def view():
             labels = 'Support', 'Leaning Support', 'Undecided', 'Leaning Oppose', 'Oppose', 'Contacted', 'Not Contacted'
             sizes = [support // housePop['district'], lean_yes // housePop['district'],
                      undecided // housePop['district'], lean_no // housePop['district'],
-                     oppose // housePop['district'], contact // housePop['district']
+                     oppose // housePop['district'], contact // housePop['district'],
                      no_contact // housePop['district']]
 
             explode = (0, 0, 0.2, 0, 0)  # Causes the referenced slice ("voted") to pop out)
