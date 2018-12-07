@@ -110,7 +110,7 @@ def search():
 def lookup():
     if request.method == "GET":
         # Gets input string from user
-        q = request.args.get("q")
+        q = str(request.args.get("q"))
         # Gets active user's username to point to their database
         user = db.execute("SELECT username FROM users WHERE id = :identify", identify=session['user_id'])
         # Gets a list of dicts of all stored voters
@@ -130,8 +130,6 @@ def lookup():
 
         else:
             return render_template("lookup.html", voters=voters, campaign=campaignType[0]['account_type'])
-
-
 
 @app.route("/login", methods=["POST", "GET"])
 def login():
