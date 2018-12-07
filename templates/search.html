@@ -65,7 +65,11 @@
           <!-- <td>  voter['voted'] </td> -->
           <td> {{voter['email']}} </td>
           <td> {{voter['phone']}} </td>
-
+          <td>
+            <form action="/update" method="POST">
+              <input type="submit" value="Update Info" name={{voter['voterid']}}>
+            </form>
+          </td>
       {% endfor %}
     </tbody>
 </table>
