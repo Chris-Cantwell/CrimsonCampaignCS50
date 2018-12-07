@@ -32,7 +32,12 @@
       <input class="form-control" name="entryway" placeholder="Entryway" type="text">
     </div>
 
-    <!-- Checkbox: Voter Contacted? -->
+    <div class="form-group">
+      <p> Voter Contacted? </p>
+        <input type="radio" name="contact" value="True"> Yes
+        <input type="radio" name="contact" value="False"> No
+        <br>
+    </div>
 
     {% if campaign == "registration" %}
 
@@ -43,8 +48,20 @@
       <input class="form-control" name="hometown" placeholder="Hometown" type="text">
     </div>
     <div class="form-group">
-    <!-- Checkbox: Registered? -->
-    <!-- Checkbox: Ballot Request? -->
+
+    <div class="form-group">
+      <p> Voter Registered? </p>
+        <input type="radio" name="register" value="True"> Yes
+        <input type="radio" name="register" value="False"> No
+        <br>
+    </div>
+
+    <div class="form-group">
+      <p> Absentee Ballot Requested? </p>
+        <input type="radio" name="ballot" value="True"> Yes
+        <input type="radio" name="ballot" value="False"> No
+        <br>
+    </div>
 
     {% endif %}
 
@@ -63,7 +80,12 @@
 
     {% endif %}
 
-    <!-- Radio Buttons: Did they vote? -->
+    <div class="form-group">
+      <p> Has Voted? </p>
+        <input type="radio" name="voted" value="True"> Yes
+        <input type="radio" name="voted" value="False"> No
+        <br>
+    </div>
     <div class="form-group">
       <input class="form-control" name="email" placeholder="Email" type="text">
     </div>

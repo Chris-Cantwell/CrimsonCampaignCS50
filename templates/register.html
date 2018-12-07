@@ -7,28 +7,29 @@
 {% block main %}
     <form action="/register" method="POST">
         <div class="form-group">
-            <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
+            <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text" required>
         </div>
         <div class="form-group">
-            <input class="form-control" name="password" placeholder="Password" type="password">
+            <input class="form-control" name="password" placeholder="Password" type="password" required>
         </div>
         <div class="form-group">
-            <input class="form-control" name="confirmation" placeholder="Confirm Password" type="password">
+            <input class="form-control" name="confirmation" placeholder="Confirm Password" type="password" required>
         </div>
         <div class="form-group">
-          <input class="form-control" name="name" placeholder="Name" type="text">
+          <input class="form-control" name="name" placeholder="Name" type="text" required>
         </div>
         <div class="form-group">
-          <select class="form-control" name="campaign-type">
+          <select class="form-control" name="campaign-type" required>
             <option disabled>Select Your Campaign Type</option>
             <option value="registration">Voter Registration</option>
             <option value="exec">UC Executive</option>
-            <option value="house">UC House / Yard</option>
+            <option value="house">UC House</option>
+            <option value="yard">UC Yard</option>
             <option value="other">Other Campus-Wide</option>
           </select>
         </div>
         <div class="form-group">
-          <input class="form-control" name="house" placeholder="House" type="text">
+          <input class="form-control" name="house" placeholder="House" type="text" required>
         </div>
         <button class="btn btn-primary" type="submit">Log In</button>
     </form>

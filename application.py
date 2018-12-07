@@ -67,25 +67,31 @@ def input():
         # Adds voter to database
         if campaignType[0]['account_type'] == "registration":
             db.execute("INSERT INTO " + user[0]['username'] + " (firstname, lastname, house,"
-                       "entryway, state, hometown, email, phone)"
-                       "VALUES (:firstname, :lastname, :house,"
-                       ":entryway, :state, :hometown, :email, :phone)",
+                       "contact, entryway, state, hometown, registered, ballotrequest, "
+                       "voted, email, phone)"
+                       "VALUES (:firstname, :lastname, :house, :contact,"
+                       ":entryway, :state, :hometown, :register, :ballot,"
+                       ":voted, :email, :phone)",
                        firstname=request.form.get("firstname"), lastname=request.form.get("lastname"),
                        house=request.form.get("house"), entryway=request.form.get("entryway"),
-                       state=request.form.get("state"), hometown=request.form.get("hometown"),
+                       contact=request.form.get("contact"), state=request.form.get("state"),
+                       hometown=request.form.get("hometown"), register=request.form.get("register"),
+                       ballot=request.form.get("ballot"), voted=request.form.get("voted"),
                        email=request.form.get("email"), phone=request.form.get("phone"))
 
         elif campaignType[0]['account_type'] == "house":
-            db.execute("INSERT INTO " + user[0]['username'] + " (firstname, lastname, house,"
-                       "entryway, state, hometown, email, phone)"
-                       "VALUES (:firstname, :lastname,:entryway, :email, :phone)",
+            db.execute("INSERT INTO " + user[0]['username'] + " (firstname, lastname,"
+                       "contact, entryway, support, voted, email, phone)"
+                       "VALUES (:firstname, :lastname, :contact, :entryway, :support,"
+                       " :voted, :email, :phone)",
                        firstname=request.form.get("firstname"), lastname=request.form.get("lastname"),
-                       entryway=request.form.get("entryway"),email=request.form.get("email"),
-                       phone=request.form.get("phone"))
+                       entryway=request.form.get("entryway"),contact=request.form.get("contact"),
+                       support=request.form.get("support"), voted=request.form.get("voted"),
+                       email=request.form.get("email"), phone=request.form.get("phone"))
 
         else:
             db.execute("INSERT INTO " + user[0]['username'] + " (firstname, lastname, house,"
-                       "entryway, email, phone)"
+                       "entryway, contact, support, voted, email, phone)"
                        "VALUES (:firstname, :lastname, :house,"
                        ":entryway, :email, :phone)",
                        firstname=request.form.get("firstname"), lastname=request.form.get("lastname"),
