@@ -235,7 +235,7 @@ def view():
 
     # Defaults to just displaying the form
     if request.method == "GET":
-        return render_template("view", show=False)
+        return render_template("view.html", show=False)
 
     if request.method == "POST":
         district = request.form.get("district")
