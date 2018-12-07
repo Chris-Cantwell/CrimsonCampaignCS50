@@ -19,6 +19,10 @@ match the needs of different forms of races, seeking to minimize redundancies.
 Through both Pythonic and Jinja control, this variation comes into play in Navbar
 graphics, form contents, the search form display, and database creation.
 
+I also intentionally tried to work outside the CS50 IDE, learning the ins and outs
+of Atom and Heroku in the process. I'm glad I did this and feel like I got a lot
+out of it, but it also did slow me down greatly. 
+
 *I will admit that I struggled with time far more than I expected to, not sure
 what part of that is over-ambition and which part comes to my own ability and
 workflow.
