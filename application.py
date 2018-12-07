@@ -268,6 +268,12 @@ def view():
 
             no_contact = housePop[district] - (registered + ballot_request + voted)
 
+            registered *= 100
+            ballot_request *= 100
+            voted *= 100
+            contact *= 100
+            no_contact *= 100
+
             # Pie chart, where the slices will be ordered and plotted counter-clockwise:
             labels = 'Registered', 'Ballot Requested', 'Voted', 'Contacted', 'Not Contacted'
             sizes = [registered / housePop[district], ballot_request / housePop[district],
@@ -313,6 +319,17 @@ def view():
             no_contact = housePop[district] - (support + lean_yes + undecided
                          + lean_no + oppose + contact)
 
+
+            # multiplies all variables by 100 because matplotlib takes in whole # percents
+
+            support *= 100
+            lean_yes *= 100
+            undecided *= 100
+            lean_no *= 100
+            oppose *= 100
+            contact *= 100
+            no_contact *= 100
+
             # Pie chart, where the slices will be ordered and plotted counter-clockwise:
             labels = 'Support', 'Leaning Support', 'Undecided', 'Leaning Oppose', 'Oppose', 'Contacted', 'Not Contacted'
             sizes = [support / housePop[district], lean_yes / housePop[district],
@@ -320,7 +337,7 @@ def view():
                      oppose / housePop[district], contact / housePop[district],
                      no_contact / housePop[district]]
 
-            explode = (0, 0, 0.2, 0, 0)  # Causes the referenced slice ("voted") to pop out)
+            explode = (0.2, 0, 0, 0, 0, 0)  # Causes the referenced slice ("voted") to pop out)
 
             fig1, ax1 = plt.subplots()
             ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
