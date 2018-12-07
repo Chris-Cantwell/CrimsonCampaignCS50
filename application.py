@@ -111,7 +111,7 @@ def search():
         allVoters = db.execute("SELECT * FROM " + user[0]['username'] + "")
 
         voters = []
-        if q = '':
+        if q == '':
             voters = allVoters
         else:
             for voter in allVoters:
