@@ -1,4 +1,4 @@
-:from flask import Flask, render_template, request, redirect, session, flash, jsonify
+from flask import Flask, render_template, request, redirect, session, flash, jsonify
 from flask_session import Session
 import os
 from cs50 import SQL
