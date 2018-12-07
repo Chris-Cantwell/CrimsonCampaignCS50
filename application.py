@@ -210,7 +210,7 @@ def update():
     return render_template("update.html", voterid=voterid)
 
 # Renders pie charts to allow the user to get a ballpack image of progress
-@app.route("/view", methods=["GET, "POST"])
+@app.route("/view", methods=["GET", "POST"])
 @login_required
 def view():
     """Use matplotlib to show pie charts of the state of progress
