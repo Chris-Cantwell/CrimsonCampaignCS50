@@ -311,7 +311,7 @@ def view():
                     contact += 1
 
             no_contact = housePop['district'] - (support + lean_yes + undecided
-                                                 lean_no + oppose + contact)
+                         lean_no + oppose + contact)
 
             # Pie chart, where the slices will be ordered and plotted counter-clockwise:
             labels = 'Support', 'Leaning Support', 'Undecided', 'Leaning Oppose', 'Oppose', 'Contacted', 'Not Contacted'
