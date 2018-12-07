@@ -52,7 +52,7 @@ individual records can be altered. This update feature, however, is still in dev
 
 ## Step 4: View Progress
 
-The "View Data" tab allows for users to see various pie charts tracking
+The "View Progress" tab allows for users to see various pie charts tracking
 their progress against the number of voters they haven't contacted based on
 estimates of total populations in different dorms and houses. Unfortunately,
 access to lists of eligible voters are not available for different causes,
