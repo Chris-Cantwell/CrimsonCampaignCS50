@@ -6,7 +6,10 @@
 
 {% block main %}
 
-<input autocomplete="off" autofocus placeholder="name" type="text">
+<form action="/lookup" method="GET">
+  <input autocomplete="off" autofocus placeholder="name" type="text">
+  <input type="submit" value="Search"
+</form>
 
 <table>
     <thead>
