@@ -117,7 +117,7 @@ def search():
             voters = allVoters
         else:
             for voter in allVoters:
-                if (lower(q) in lower(voter['firstname'])) or (lower(q) in lower(voter['lastname'])):
+                if (q.lower() in voter['firstname'].lower())) or (q.lower() in voter['lastname'].lower()):
                     voters.append(voter)
 
         # Formats voter list as an HTML table, with varying parameters to match campaign type
