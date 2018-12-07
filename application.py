@@ -387,7 +387,7 @@ def register():
 
             db.execute("CREATE SEQUENCE " + user + "_voterid_seq START WITH 1 INCREMENT BY 1;")
 
-            db.execute("ALTER TABLE " + user + ""
+            db.execute("ALTER TABLE " + user + " "
             "ALTER 'voterid' TYPE integer,"
             "ALTER 'voterid' SET DEFAULT nextval('" + user + "l_voterid_seq'),"
             "ALTER 'voterid' SET NOT NULL;")
