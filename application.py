@@ -111,7 +111,10 @@ def search():
         allVoters = db.execute("SELECT * FROM " + user[0]['username'] + "")
 
         voters = []
-        for voter in allVoters:
+        if q = '':
+            voters = allVoters
+        else:
+            for voter in allVoters:
             if (q in voter['firstname']) or (q in voter['lastname']):
                 voters.append(voter)
 
