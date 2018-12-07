@@ -130,11 +130,11 @@ def search():
         else:
             return render_template("search.html", q=q, voters=voters, campaign=campaignType[0]['account_type'])
 
-@app.route("/update", methods["GET", "POST"])
+@app.route("/update", methods=["GET", "POST"])
 @login_required
 def update():
     voterid = request.form.get("voterid")
-    return render_template("update.html")
+    return render_template("update.html", voterid=voterid)
 
 @app.route("/view")
 @login_required
