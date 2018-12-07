@@ -110,12 +110,14 @@ def search():
         # Gets a list of dicts of all stored voters
         allVoters = db.execute("SELECT * FROM " + user[0]['username'] + "")
 
+        # Puts all instances of which contain search as a substring (non case-sensitive)
+        # into a dict which is then formatted into the webpage using Jinja
         voters = []
         if q == '':
             voters = allVoters
         else:
             for voter in allVoters:
-                if (q in voter['firstname']) or (q in voter['lastname']):
+                if (lower(q) in lower(voter['firstname'])) or (lower(q) in lower(voter['lastname'])):
                     voters.append(voter)
 
         # Formats voter list as an HTML table, with varying parameters to match campaign type
