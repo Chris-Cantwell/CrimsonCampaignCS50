@@ -37,18 +37,8 @@
       </tr>
     </thead>
     <tbody>
-
+    {% block lookup %} {% endblock %}
     </tbody>
 </table>
-<!-- Sets up jquery -->
-
-<script type="text/javascript">
-  let input = document.querySelector('input');
-    input.onkeyup = function() {
-      $.get($SCRIPT_ROOT + '/lookup?q=' + input.value, function(data) {
-          document.querySelector('tbody').innerHTML += data;
-      });
-    };
-</script>
 
 {% endblock %}
