@@ -29,7 +29,8 @@
         <li class={% block input %}{% endblock %}><a class="nav-link" href="/input">Data Input</a></li>
         <li class={% block search %}{% endblock %}><a class="nav-link" href="/search">Data Search</a></li>
         <li class={% block view %}{% endblock %}><a class="nav-link" href="/view">Data Search</a></li>
-
+    </div>
+    <div>
         <!-- Customizes UI Based on Account Type -->
         {% if session.campaign_type == "registration" %}
         <li><img src="static/HVC-logo.png" height="100"></li>
@@ -60,8 +61,10 @@
             <li><img src="static/houses/winthrop.png" height="100"></li>
           {% endif %}
         {% endif %}
-
+      </div>
+      <div>
         <li><a class="nav-link" href="/logout">Log Out</a></li>
+      </div>
       </ul>
     </div>
     {% else %}
