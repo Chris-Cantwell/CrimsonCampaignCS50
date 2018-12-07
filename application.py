@@ -115,8 +115,8 @@ def search():
             voters = allVoters
         else:
             for voter in allVoters:
-            if (q in voter['firstname']) or (q in voter['lastname']):
-                voters.append(voter)
+                if (q in voter['firstname']) or (q in voter['lastname']):
+                    voters.append(voter)
 
         # Formats voter list as an HTML table, with varying parameters to match campaign type
         campaignType = db.execute("SELECT account_type FROM users WHERE id= :identify", identify=session['user_id'])
