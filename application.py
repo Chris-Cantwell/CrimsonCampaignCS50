@@ -270,9 +270,9 @@ def view():
 
             # Pie chart, where the slices will be ordered and plotted counter-clockwise:
             labels = 'Registered', 'Ballot Requested', 'Voted', 'Contacted', 'Not Contacted'
-            sizes = [registered // housePop[district], ballot_request // housePop[district],
-                     voted // housePop[district], contact // housePop[district],
-                     no_contact // housePop[district]]
+            sizes = [registered / housePop[district], ballot_request / housePop[district],
+                     voted / housePop[district], contact / housePop[district],
+                     no_contact / housePop[district]]
 
             explode = (0, 0, 0.2, 0, 0)  # Causes the referenced slice ("voted") to pop out)
 
@@ -315,10 +315,10 @@ def view():
 
             # Pie chart, where the slices will be ordered and plotted counter-clockwise:
             labels = 'Support', 'Leaning Support', 'Undecided', 'Leaning Oppose', 'Oppose', 'Contacted', 'Not Contacted'
-            sizes = [support // housePop[district], lean_yes // housePop[district],
-                     undecided // housePop[district], lean_no // housePop[district],
-                     oppose // housePop[district], contact // housePop[district],
-                     no_contact // housePop[district]]
+            sizes = [support / housePop[district], lean_yes / housePop[district],
+                     undecided / housePop[district], lean_no / housePop[district],
+                     oppose / housePop[district], contact / housePop[district],
+                     no_contact / housePop[district]]
 
             explode = (0, 0, 0.2, 0, 0)  # Causes the referenced slice ("voted") to pop out)
 
