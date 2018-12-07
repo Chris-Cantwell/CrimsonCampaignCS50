@@ -249,7 +249,7 @@ def view():
         if session['campaign_type'] == "registration":
 
             registered = 0
-            ballot_requsest = 0
+            ballot_request = 0
             voted = 0
             contact = 0
 
