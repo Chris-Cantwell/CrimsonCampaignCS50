@@ -169,6 +169,12 @@ def login():
         # Remember which user has logged in
         session["user_id"] = rows[0]["id"]
 
+        # Remember campaign type
+        session["campaign_type"] = rows[0]["account_type"]
+
+        # If house campaign, remember house
+        if session["campaign_type"] == "house":
+            session["house"] = rows[0]["house"]
         # Redirect user to home page
         return redirect("/")
 
@@ -281,7 +287,6 @@ def register():
                               username=user)
 
             session["user_id"] = rows[0]["id"]
-
             # Redirect user to home page
             return redirect("/")
 

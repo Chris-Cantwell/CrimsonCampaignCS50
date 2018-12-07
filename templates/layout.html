@@ -29,7 +29,38 @@
         <li class={% block input %}{% endblock %}><a class="nav-link" href="/input">Data Input</a></li>
         <li class={% block search %}{% endblock %}><a class="nav-link" href="/search">Data Search</a></li>
         <li class={% block view %}{% endblock %}><a class="nav-link" href="/view">Data Search</a></li>
-        <li> | </li>
+
+        <!-- Customizes UI Based on Account Type -->
+        {% if session.campaign_type == "registration" %}
+        <li><img src="static/HVC-logo.png" height="100"></li>
+        {% elif session.campaign_type == "exec" %}
+        <li><img src="static/UC_logo.png" height="100"></li>
+        {% elif session.campaign_type == "house" %}
+          {% if session.house == "adams" %}
+            <li><img src="static/houses/adams.png" height="100"></li>
+          {% elif session.house == "cabot" %}
+            <li><img src="static/houses/cabot.png" height="100"></li>
+          {% elif session.house == "currier" %}
+            <li><img src="static/houses/currier.png" height="100"></li>
+          {% elif session.house == "dudley" %}
+            <li><img src="static/houses/dudley.png" height="100"></li>
+          {% elif session.house == "dunster" %}
+            <li><img src="static/houses/dunster.png" height="100"></li>
+          {% elif session.house == "eliot" %}
+            <li><img src="static/houses/eliot.png" height="100"></li>
+          {% elif session.house == "kirkland" %}
+            <li><img src="static/houses/kirlkand.png" height="100"></li>
+          {% elif session.house == "leverett" %}
+            <li><img src="static/houses/lev.png" height="100"></li>
+          {% elif session.house == "pfoho" %}
+            <li><img src="static/houses/pfoho.png" height="100"></li>
+          {% elif session.house == "quincy" %}
+            <li><img src="static/houses/quincy.png" height="100"></li>
+          {% elif session.house == "winthrop" %}
+            <li><img src="static/houses/winthrop.png" height="100"></li>
+          {% endif %}
+        {% endif %}
+
         <li><a class="nav-link" href="/logout">Log Out</a></li>
       </ul>
     </div>
@@ -42,7 +73,7 @@
     </div>
     {% endif %}
   </nav>
-
+  <br>
   <!-- Jinja input for body tags of other pages -->
   {% block main %}{% endblock %}
 </body>
