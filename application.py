@@ -123,10 +123,10 @@ def search():
 
         if campaignType == "house":
             dorm = db.execute("SELECT house FROM users WHERE id=:identify", identify=session['user_id'])
-            return render_template("search.html", voters=voters, campaign=campaignType[0]['account_type'], house=dorm[0]['house'])
+            return render_template("search.html", q=q, voters=voters, campaign=campaignType[0]['account_type'], house=dorm[0]['house'])
 
         else:
-            return render_template("search.html", voters=voters, campaign=campaignType[0]['account_type'])
+            return render_template("search.html", q=q, voters=voters, campaign=campaignType[0]['account_type'])
 
 @app.route("/login", methods=["POST", "GET"])
 def login():
