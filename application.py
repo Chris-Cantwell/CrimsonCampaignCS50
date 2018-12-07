@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session, flash, jsonify
+:from flask import Flask, render_template, request, redirect, session, flash, jsonify
 from flask_session import Session
 import os
 from cs50 import SQL
@@ -23,58 +23,73 @@ Session(app)
 # Connects to PostgresSQL database
 db = SQL("postgres://bcbfedessydwun:dbdc8f53173f93f71ff4b7c1ea51fefee2e4dac7d785d312c4f426eae16ce8ab@ec2-54-163-230-178.compute-1.amazonaws.com:5432/dat9s8lnbu4obk")
 
-''' Defnes constants for college and dorm total students '''
+''' Organizes house residence approximations in a dict '''
 # Estimated based on facebook.college.harvard.edu results
-TOTAL_UNDERGRADS = 6827
-# House totals
-TOTAL_ADAMS = 450
-TOTAL_CABOT = 373
-TOTAL_CURRIER = 367
-TOTAL_DUDLEY = 121
-TOTAL_DUNSTER = 394
-TOTAL_ELIOT = 441
-TOTAL_KIRKLAND = 387
-TOTAL_LEVERETT = 325
-TOTAL_LEV_MCKINLOCK = 180
-TOTAL_MATHER = 407
-TOTAL_PFOHO = 400
-TOTAL_QUINCY = 483
-TOTAL_WINTHROP = 413
 
-TOTAL_NONSWING_LOWELL = 19
-# Swing Housing
-TOTAL_FAIRFAX = 56
-TOTAL_HAMPDEN = 61
-TOTAL_IH = 114
-TOTAL_RIDGLEY = 41
+housePop = {
+    "college": 6827,
+    # House Totals
+    "adams": 450,
+    "cabot": 373,
+    "currier": 367,
+    "dudley": 121,
+    "dunster": 394,
+    "eliot": 441,
+    "kirkland": 387,
+    "leverett": 325,
+    "lev_mckinlock": 180,
+    "mather": 407,
+    "pfoho": 400,
+    "quincy": 483,
+    "winthrop": 413,
+    "nonswing_lowell": 19,
+    # Swing Housing
+    "fairfax": 56,
+    "hampden": 61,
+    "IH": 114,
+    "ridgley": 41,
 
-TOTAL_LOWELL = TOTAL_FAIRFAX + TOTAL_HAMPDEN + TOTAL_NONSWING_LOWELL + TOTAL_IH + TOTAL_RIDGLEY
+    # Freshman Dorm Totals
+    "apley" : 29,
+    "canaday" : 245,
+    "grays" : 97,
+    "greenough" : 86,
+    "hollis" : 58,
+    "holworthy" : 83,
+    "hurlbut" : 58,
+    "lionel" : 34,
+    "masshall" : 14,
+    "matthews" : 153,
+    "mower" : 33,
+    "pennypacker" : 104,
+    "stoughton" : 58,
+    "straus" : 96,
+    "thayer" : 156,
+    "weld" : 153,
+    "wigg" :201,
+}
 
-# Dorm Totals
-TOTAL_APLEY = 29
-TOTAL_CANADAY = 245
-TOTAL_GRAYS = 97
-TOTAL_GREENOUGH = 86
-TOTAL_HOLLIS = 58
-TOTAL_HOLWORTHY = 83
-TOTAL_HURLBUT = 58
-TOTAL_LIONEL = 34
-TOTAL_MASSHALL = 14
-TOTAL_MATTHEWS = 153
-TOTAL_MOWER = 33
-TOTAL_PENNYPACKER = 104
-TOTAL_STOUGHTON = 58
-TOTAL_STRAUS = 96
-TOTAL_THAYER = 156
-TOTAL_WELD = 153
-TOTAL_WIGG = 201
+# Adds/updates fields which are sums of those stored
+# house totals
+housePop['lowell'] = (housePop['nonswing_lowell'] + housePop['fairfax'] + housePop['hampden']
+                      + housePop['IH'] + housePop['ridgley'])
+housePop['leverett'] = housePop['leverett'] + housePop['lev_mckinlock']
+# house groups
+housePop['quad'] = housePop['pfoho'] + housePop['cabot'] + housePop['currier']
+housePop['river'] = (housePop['adams'] + housePop ['dunster'] + housePop['eliot']
+                     + housePop['kirkland'] + housePop['leverett'] + housePop['mather']
+                     + housePop['quincy'] + housePop['winthrop'] + housePop['lowell'])
+# freshman yards
+housePop['elm_yard'] = housePop['grays'] + housePop['weld'] + housePop['matthews']
+housePop['ivy_yard'] = (housePop['apley'] + housePop['hollis'] + housePop['holworthy']
+                        + housePop['lionel'] + housePop['masshall'] + housePop['mower']
+                        + housePop['stoughton'] + housePop['straus'])
+housePop['crimson_yard'] = (housePop['greenough'] + housePop['wigg'] + housePop['hurlbut']
+                            + housePop['pennypacker'])
+housePop['oak_yard'] = housePop['canaday'] + housePop['thayer']
 
-# Calculate freshman yard totals
-TOTAL_ELM_YARD = TOTAL_GRAYS + TOTAL_WELD + TOTAL_MATTHEWS
-TOTAL_IVY_YARD = (TOTAL_APLEY + TOTAL_HOLLIS + TOTAL_HOLWORTHY + TOTAL_LIONEL
-                 + TOTAL_MASSHALL + TOTAL_MOWER + TOTAL_STOUGHTON + TOTAL_STRAUS)
-TOTAL_CRIMSON_YARD = TOTAL_GREENOUGH + TOTAL_WIGG + TOTAL_HURLBUT + TOTAL_PENNYPACKER
-TOTAL_OAK_YARD = TOTAL_CANADAY + TOTAL_THAYER
+
+'''Defines flask routes'''
 
 # Define login required decorator which ensures user is logged in for all app
 # functions. Lifted from C$50 Finance Helpers
