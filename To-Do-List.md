@@ -33,7 +33,13 @@ Chris Cantwell's final project for CS50, November 2018.
 
 ## TODO:
 * *Current Plan: Server: Heroku, Database: PostgressSQL, Controller: Python, Frontend: Flask/Jinja*
-* Some JS for error messages / login restrictions
+* /error -> JS error messages through alert
+* login restrictions - required fields, SQL injection protection
 * Additional CSS / Bootstrap for aesthetics
 * Data Visualization
-* Handle freshmen yard elections case
+* Handle first-year yard elections case
+* Prompt before adding repeating names in voter data
+* Links in pictures
+* More bug testing / cleanup
+* Make house/dorm selection a <select>
+* Check voter eligibility with registration 
