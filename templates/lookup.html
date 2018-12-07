@@ -1,5 +1,6 @@
 {% extends "search.html" %}
 
+{% block lookup %}
 {% for voter in voters %}
   <tr>
     <td> voter['firstname'] </td>
@@ -27,3 +28,4 @@
     <td> voter['email'] </td>
     <td> voter['phone'] </td>
 {% endfor %}
+{% endblock %}
