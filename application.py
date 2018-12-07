@@ -393,7 +393,7 @@ def register():
             "ALTER voterid SET NOT NULL;")
 
             # Remember which user has logged in
-            rows = db.execute("SELECT id FROM users WHERE username = :username",
+            rows = db.execute("SELECT * FROM users WHERE username = :username",
                               username=user)
 
             session["user_id"] = rows[0]["id"]
