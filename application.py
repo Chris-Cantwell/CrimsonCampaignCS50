@@ -130,6 +130,17 @@ def search():
         else:
             return render_template("search.html", q=q, voters=voters, campaign=campaignType[0]['account_type'])
 
+@app.route("/update", methods["GET", "POST"])
+@login_required
+def update():
+    return render_template("update.html")
+
+@app.route("/view")
+@login_required
+def view():
+    return render_template("update.html")
+
+
 @app.route("/login", methods=["POST", "GET"])
 def login():
     """Log user in"""
