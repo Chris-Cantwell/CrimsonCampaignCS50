@@ -284,7 +284,7 @@ def login():
 
         # If house campaign, remember house
         if session["campaign_type"] == "house":
-            session["house"] = rows[0]["house"]
+            session["house"] = rows[0]["house"].lower()
         # Redirect user to home page
         return redirect("/")
 
