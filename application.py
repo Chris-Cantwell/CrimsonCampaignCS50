@@ -263,7 +263,7 @@ def view():
                     ballot_request += 1
                 elif row['registered']:
                     registered += 1
-                elif row['contact']
+                elif row['contact']:
                     contact += 1
 
             no_contact = housePop['district'] - (registered + ballot_request + voted)
