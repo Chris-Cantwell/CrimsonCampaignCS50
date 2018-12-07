@@ -103,12 +103,6 @@ def search():
         return render_template("search.html", campaign=campaignType[0]['account_type'])
 
     else:
-        return render_template("update.html")
-
-@app.route("/lookup", methods=["POST","GET"])
-@login_required
-def lookup():
-    if request.method == "GET":
         # Gets input string from user
         q = str(request.args.get("q"))
         # Gets active user's username to point to their database
