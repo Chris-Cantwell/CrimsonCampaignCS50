@@ -133,6 +133,7 @@ def search():
 @app.route("/update", methods["GET", "POST"])
 @login_required
 def update():
+    voterid = request.form.get("voterid")
     return render_template("update.html")
 
 @app.route("/view")
