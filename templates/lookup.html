@@ -1,3 +1,10 @@
+{% extends "layout.html" %}
+
+{% block title %}Search{% endblock %}
+
+{% block search %}"nav-item active"{% endblock %}
+<table>
+
 {% for voter in voters %}
   <tr>
     <td> voter['firstname'] </td>
@@ -26,4 +33,5 @@
     <td> voter['phone'] </td>
 
   </tr>
+</table>
 {% endfor %}
