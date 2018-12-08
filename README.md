@@ -3,7 +3,7 @@
 
 ## Overview
 
-Crimson Campaigns is a web application which coordinates the storage and
+[Crimson Campaigns](http://crimson-campaigns.herokuapp.com/) is a web application which coordinates the storage and
 management of data for on-campus campaign efforts. This tool is designed to
 assist those registering voters on campus, such as with the
 [Harvard Votes Challenge](https://ash.harvard.edu/vote), as well as those seeking
